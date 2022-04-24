@@ -1,4 +1,6 @@
 import DrawerInitiator from '../utils/drawer-initiator';
+import UrlParser from '../routes/url-parser';
+import routes from '../routes/routes';
 // Class App dibuat bertujuan untuk menginisiasikan komponen-komponen dari Application Shell
 class App {
     constructor({ button, drawer, content }) {
@@ -17,6 +19,13 @@ class App {
             drawer: this._drawer,
             content: this._content,
       });
+  }
+// asynchronous fungsi baru untuk me-render halaman berdasarkan URL yang aktif
+  async renderPage() {
+    const url = UrlParser.parseActiveUrlWithCombiner();
+    const page = routes[url];
+    this._content.innerHTML = await page.render();
+    await page.afterRender();
   }
 }
 

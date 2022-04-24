@@ -8,3 +8,12 @@ const app = new App({
   drawer: document.querySelector('#navigationDrawer'),
   content: document.querySelector('#mainContent'),
 });
+
+//event listener ketika url hash diubah
+window.addEventListener('hashchange', () => {
+  app.renderPage();
+});
+//event listener ketika halaman dimuat
+window.addEventListener('load', () => {
+  app.renderPage();
+});
